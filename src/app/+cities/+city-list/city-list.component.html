@@ -1,0 +1,5 @@
+<ul>
+	<li *ngFor="let city of cities">
+		<a [routerLink]="['/city/', city.id]">{{city.content}}</a>
+	</li>
+</ul>

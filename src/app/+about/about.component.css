@@ -1,0 +1,11 @@
+.ng-valid{
+	background: #cfc;
+}
+
+.ng-invalid{
+	background: #fcc;
+}
+
+.alert{
+	color: red;
+}

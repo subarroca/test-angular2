@@ -1,0 +1,69 @@
+<div>
+  <h1>Hero Form</h1>
+
+  <div [hidden]="submitted">
+    <form
+      (ngSubmit)="onSubmit()"
+      #personForm="ngForm">
+      
+      <div>
+        <label for="name">Name</label>
+        <input type="text"
+          [(ngModel)] = "model.name"
+          ngControl="name"
+          required
+          #name="ngForm">
+      </div>
+      <div [hidden]="name.valid || name.pristine" class="alert">
+        Name is required
+      </div>
+    
+      <div>
+        <label for="email">Email</label>
+        <input type="text"
+          [(ngModel)] = "model.email"
+          ngControl="email"
+          pattern="^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$"
+          required
+          #email="ngForm">
+      </div>
+      <div [hidden]="email.valid || email.pristine" class="alert">
+        Email must match x@x.x
+      </div>
+    
+      <div>
+        <label for="age">Age</label>
+        <input type="number"
+          [(ngModel)] = "model.age"
+          ngControl="age"
+          min="13"
+          #age="ngForm">
+      </div>
+      <div [hidden]="age.valid || age.pristine" class="alert">
+        Min age is 13
+      </div>
+    
+      <button
+        type="submit"
+        [disabled]="!personForm.form.valid">Submit</button>
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div>
+      <strong>Name</strong>
+      <span>{{ model.name }}</span>
+    </div>
+    <div>
+      <strong>Email</strong>
+      <span>{{ model.email }}</span>
+    </div>
+    <div>
+      <strong>Age</strong>
+      <span>{{ model.age }}</span>
+    </div>
+    <br>
+    <button (click)="submitted=false">Edit</button>
+  </div>
+</div>

@@ -1,3 +1,17 @@
 <h1>
-  {{title}}
+  {{'app.welcome' | translate: {name: name} }}
 </h1>
+
+<div>
+	<a (click)="setLang('ca')">ca</a>
+	<a (click)="setLang('es')">es</a>
+	<a (click)="setLang('en')">en</a>
+</div>
+
+<nav>
+	<a [routerLink]="['/']">Home</a>
+	<a [routerLink]="['/about']">About</a>
+	<a [routerLink]="['/cities']">Cities</a>
+</nav>
+
+<router-outlet></router-outlet>
