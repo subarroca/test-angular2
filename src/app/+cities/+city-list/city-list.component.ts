@@ -16,17 +16,58 @@ import { StatsService } from '../../shared/stats.service';
 })
 export class CityListComponent implements OnInit {
 	cities: any[];
+  currentColor: string;
+
+
+  private currentColorIndex: number = -1;
+  private colors: string[] = ['transparent', 'wheat'];
+
 
   constructor(
   	private stats: StatsService
   ) {}
 
   ngOnInit() {
+    this.changeStyle();
+
+    console.time('loadCities');
+
   	this.stats
   	.getCities()
-  	.subscribe((data)=> {
-			this.cities = data.fitxes.v;
+    .subscribe((data) => {
+      console.time('renderCities');
+      this.cities = data.fitxes.v;
+      console.timeEnd('loadCities');
+
+      setTimeout(
+      function() {
+        console.timeEnd('renderCities');
+      }
+      );
   	})
+  }
+
+  onInputChanged() {
+    console.time('inputChange');
+
+    setTimeout(
+      function() {
+        console.timeEnd('inputChange');
+      }
+    );
+  }
+
+  changeStyle() {
+    console.time('styleChange');
+
+    this.currentColorIndex = (this.currentColorIndex + 1) % this.colors.length;
+    this.currentColor = this.colors[this.currentColorIndex];
+
+    setTimeout(
+      function() {
+        console.timeEnd('styleChange');
+      }
+    );
   }
 
 }

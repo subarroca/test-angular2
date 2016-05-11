@@ -1,5 +1,37 @@
+<button
+	(click)="changeStyle()">
+	Change Style
+</button>
+
 <ul>
-	<li *ngFor="let city of cities">
-		<a [routerLink]="['/city/', city.id]">{{city.content}}</a>
+	<li
+		*ngFor="let city of cities; let i = index">
+		
+		<a
+			[routerLink]="['/city/', city.id]"
+			[style.background]="currentColor"
+			class="label">
+			{{city.content}}
+		</a>
+		
+		<input
+			type="text"
+			[(ngModel)]="city.content"
+			(ngModelChange)="onInputChanged()">
+		
+		<input
+			type="text"
+			[(ngModel)]="city.id"
+			(ngModelChange)="onInputChanged()">
+		
+		<input
+			type="text"
+			[(ngModel)]="city.scheme"
+			(ngModelChange)="onInputChanged()">
+		
+		<input
+			type="text"
+			[(ngModel)]="city.id"
+			(ngModelChange)="onInputChanged()">
 	</li>
 </ul>
